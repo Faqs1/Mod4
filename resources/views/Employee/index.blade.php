@@ -51,80 +51,26 @@
         <div class="table-responsive border p-3 rounded-3">
             <table class="table table-bordered table-hover table-striped mb-0 bg-white">
                 <thead>
+                    @foreach($employees as $employee)
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Faiq</td>
-                        <td>Rizki</td>
-                        <td>Faiqrizki@student.telkomuniversity.ac.id</td>
-                        <td>20</td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="" class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-person-lines-fill"></i></a>
-                                <a href="" class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-pencil-square"></i></a>
+                        <td>{{ $employee->firstname }}</td>
+                        <td>{{ $employee->lastname }}</td>
+                        <td>{{ $employee->email }}</td>
+                        <td>{{ $employee->age }}</td>
+                        <td>{{ $employee->position_name }}</td>
+                        <td class="d-flex" >
+                            <a href="{{ route('employees.show',['employee'=>$employee->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
+                            <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i
+                                class="bi-pencil-square"></i></a>
                                 <div>
-                                    <form action="" method="POST">@csrf @method('delete')
+                                    <form action="{{ route('employees.destroy',['employee'=>$employee->id]) }}" method="POST">@csrf @method('delete')
                                         <button class="btn btn-dark-outline-dark btn-sm me-2"><i
                                                 class="bi-trash"></i></button>
                                     </form>
                                 </div>
-                            </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Dimas</td>
-                        <td>Nananto</td>
-                        <td>Dimasun@student.telkomuniversity.ac.id</td>
-                        <td>21</td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="" class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-person-lines-fill"></i></a>
-                                <a href="" class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-pencil-square"></i></a>
-                                <div>
-                                    <form action="" method="POST">@csrf @method('delete')
-                                        <button class="btn btn-dark-outline-dark btn-sm me-2"><i
-                                                class="bi-trash"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fadhik</td>
-                        <td>Imamuddin</td>
-                        <td>Falqee@student.telkomuniversity.ac.id</td>
-                        <td>19</td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="{{ route('employees.show',['employee' => 4])  }}"
-                                    class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-person-lines-fill"></i></a>
-                                <a href="{{ route('employees.edit',['employee' => 4])  }}"
-                                     class="btn btn-outline-dark btn-sm me-2"><i
-                                        class="bi-pencil-square"></i></a>
-                                <div>
-                                    <form action="{{ route('employees.destroy',['employee'=>3]) }}"
-                                         method="POST">@csrf @method('delete')
-                                        <button class="btn btn-dark-outline-dark btn-sm me-2"><i
-                                                class="bi-trash"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
+                    @endforeach
             </table>
         </div>
     </div>
